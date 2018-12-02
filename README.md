@@ -1,6 +1,6 @@
 # Vein App
 
-![Build Status](https://travis-ci.com/Abdulwahaab710/vein.svg?token=bpyKsaqf92KAMzyEvsW1&branch=master) [![codecov](https://codecov.io/gh/abdulwahaab710/vein/branch/master/graph/badge.svg)](https://codecov.io/gh/abdulwahaab710/vein)
+[![Build Status](https://travis-ci.com/Abdulwahaab710/vein.svg?token=bpyKsaqf92KAMzyEvsW1&branch=master)](https://travis-ci.com/Abdulwahaab710/vein) [![codecov](https://codecov.io/gh/abdulwahaab710/vein/branch/master/graph/badge.svg)](https://codecov.io/gh/abdulwahaab710/vein) [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=Abdulwahaab710/vein&identifier=159978730)](https://dependabot.com)
 
 ## The Problem
 
