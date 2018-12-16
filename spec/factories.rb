@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :blood_type do
+    name { 'AB+' }
+  end
   factory :district do
-    name { "MyString" }
+    name { 'Al mansoura' }
     city { nil }
   end
   factory :city do
