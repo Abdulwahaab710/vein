@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :blood_compatibility do
+    donator { nil }
+    receiver { nil }
+  end
   factory :blood_type do
     name { 'AB+' }
   end
