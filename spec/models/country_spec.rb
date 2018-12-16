@@ -21,5 +21,11 @@ RSpec.describe Country, type: :model do
       expect(Country.new(name: 'Yemen', area_code: 967)).to be_invalid
       expect(Country.new(name: 'Canada', area_code: 1)).to be_valid
     end
+
+    it 'has many cities' do
+      country = Country.create(name: 'Yemen', area_code: 967)
+      city = City.create(name: 'Aden', area_code: 0o2, country: country)
+      expect(Country.first.cities).to eq([city])
+    end
   end
 end
