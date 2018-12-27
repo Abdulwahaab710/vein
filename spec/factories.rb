@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :user do
+    name { "MyString" }
+    phone { "MyString" }
+    password_digest { "MyString" }
+    confirm_token { "MyString" }
+    phone_confirmed { false }
+    is_donor { false }
+    is_recipient { false }
+    blood_type { nil }
+    district { nil }
+    city { nil }
+  end
   factory :blood_compatibility do
     donator { nil }
     receiver { nil }
