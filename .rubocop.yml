@@ -18,3 +18,5 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
 Style/EmptyMethod:
   Enabled: false
+Rails/InverseOf:
+  Enabled: false # disable temporary until I figure out how to fix inverse_of
