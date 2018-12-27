@@ -3,6 +3,7 @@ AllCops:
     - config/unicorn.rb
     - config/routes.rb
     - db/**
+    - db/**/**
     - Guardfile
     - bin/**
     - vendor/**.**
