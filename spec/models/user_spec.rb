@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'when creating a user' do
-    let(:city) { FactoryBot.create(:city) }
-    let(:district) { FactoryBot.create(:district, city: city) }
-    let(:blood_type) { FactoryBot.create(:blood_type) }
+  let(:city) { FactoryBot.create(:city) }
+  let(:district) { FactoryBot.create(:district, city: city) }
+  let(:blood_type) { FactoryBot.create(:blood_type) }
 
+  context 'when creating a user' do
     it 'is valid with valid attributes' do
       expect(
         User.new(
@@ -114,5 +114,17 @@ RSpec.describe User, type: :model do
   end
 
   context 'when updating the user' do
+    let(:user) do
+      User.create(
+        name: 'Abdulwahaab Ahmed', phone: '123456789', password: 'password123',
+        password_confirmation: 'password123', blood_type: blood_type,
+        district: district, city: city, confirm_token: '123456'
+      )
+    end
+
+    it 'enforces password_confirmation presence when the password is changed' do
+      expect(user.update(password: 'new_password')).to eq(false)
+      expect(user.update(password: 'new_password', password_confirmation: 'new_password')).to eq(true)
+    end
   end
 end
