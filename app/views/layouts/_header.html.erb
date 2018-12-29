@@ -1,4 +1,4 @@
 <ul>
-  <li><%= link_to 'عربي', change_locale_path(locale: 'ar'), method: :post %></li>
-  <li><%= link_to 'English', change_locale_path(locale: 'en'), method: :post %></li>
+  <li><%= link_to 'عربي', change_locale_path(locale: 'ar'), method: :post, remote: true %></li>
+  <li><%= link_to 'English', change_locale_path(locale: 'en'), method: :post, remote: true %></li>
 </ul>
