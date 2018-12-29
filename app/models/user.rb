@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :phone, presence: true, uniqueness: true
-  validates :confirm_token, uniqueness: true, if: ->(u) { !u.confirm_token.nil? }
+  validates :confirm_token, uniqueness: true
 
   validates :password,
             presence: true,
@@ -21,9 +21,11 @@ class User < ApplicationRecord
 
   validate :user_is_donor_or_recipient?
 
-  belongs_to :blood_type
-  belongs_to :district
-  belongs_to :city
+  belongs_to :blood_type, optional: true
+  belongs_to :district, optional: true
+  belongs_to :city, optional: true
+
+  include Tokenable
 
   has_secure_password
 
