@@ -1,2 +1,11 @@
 ar:
   hello: "مرحباً"
+  signup: 'إنشاء حساب'
+  signup_title: 'إنشاء حساب'
+  name: 'الاسم'
+  phone: 'رقم الهاتف المحمول'
+  password: 'كلمة السر'
+  password_confirmation: 'تاكيد كلمة السر'
+  create_account: 'إنشاء حسابي'
+  signup_success_flash: 'مرحبا فيك في ڤين، لقد تم انشاء حسابك بنجاح'
+  missing_required_params: 'Required parameters are missing.'

@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
     end
 
     it 'enforces uniqueness for confirm_token' do
-      User.create(
+      user = User.create(
         name: 'Abdulwahaab Ahmed', phone: '123456789', password: 'password123',
         password_confirmation: 'password123', blood_type: blood_type,
         district: district, city: city, confirm_token: '123456'
@@ -97,7 +97,7 @@ RSpec.describe User, type: :model do
           password: 'password123', password_confirmation: 'password123',
           blood_type: blood_type,
           district: district,
-          city: city, confirm_token: '123456'
+          city: city, confirm_token: user.confirm_token
         )
       ).to be_invalid
 
@@ -110,6 +110,15 @@ RSpec.describe User, type: :model do
           city: city, confirm_token: '123457'
         )
       ).to be_valid
+    end
+
+    it 'generates confirmation token' do
+      user = User.create(
+        name: 'Abdulwahaab Ahmed', phone: '123456789', password: 'password123',
+        password_confirmation: 'password123', blood_type: blood_type,
+        district: district, city: city, confirm_token: nil
+      )
+      expect(user.confirm_token).not_to eq(nil)
     end
   end
 
@@ -138,12 +147,12 @@ RSpec.describe User, type: :model do
     end
 
     it 'enforces uniqueness for confirm_token' do
-      User.create(
+      user2 = User.create(
         name: 'Abdulwahaab Ahmed', phone: '123456788', password: 'password123',
         password_confirmation: 'password123', blood_type: blood_type,
-        district: district, city: city, confirm_token: '123455'
+        district: district, city: city
       )
-      expect(user.update(confirm_token: '123455')).to eq(false)
+      expect(user.update(confirm_token: user2.confirm_token)).to eq(false)
       expect(user.update(confirm_token: '123457')).to eq(true)
     end
 
