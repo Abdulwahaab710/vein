@@ -40,3 +40,4 @@ en:
   create_account: 'Create my account'
   signup_success_flash: 'Welcome to Vein, your account has been create!'
   missing_required_params: 'Required parameters are missing.'
+  confirmation_sms_message: "%{confirm_token} is your vein confirmation token"
