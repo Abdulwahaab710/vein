@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    # return redirect_back_or root_path if logged_in?
+    return redirect_back_or root_path if logged_in?
+
     @user = User.new
   end
 
