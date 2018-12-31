@@ -39,7 +39,6 @@ class SessionsController < ApplicationController
     log_in user
 
     return redirect_to confirm_phone_number_path unless user.confirmed?
-    return redirect_to_complete_your_profile if user.blood_type.nil?
 
     redirect_back_or root_path
   end

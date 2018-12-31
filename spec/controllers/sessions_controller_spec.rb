@@ -20,13 +20,36 @@ RSpec.describe SessionsController, type: :controller do
   describe 'POST #create' do
     before(:each) { FactoryBot.create(:user) }
 
-    context 'when signing in with a valid user' do
+    context 'when signing in with a valid user using unconfirmed phone number' do
       before(:each) do
         post :create, params: { session: session_params }
       end
 
       it 'redirects to root_path' do
         expect(response).to redirect_to(confirm_phone_number_path)
+      end
+    end
+
+    context 'when signing in with a valid user using a confirmed phone number' do
+      before(:each) do
+        User.first.update(phone_confirmed: true)
+        post :create, params: { session: session_params }
+      end
+
+      it 'redirects to root_path' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when a confirmed user was redirected from a page to login and signed in' do
+      before(:each) do
+        User.first.update(phone_confirmed: true)
+        post :create, params: { session: session_params }
+        session[:forwarding_url] = root_path
+      end
+
+      it 'redirects to root_path' do
+        expect(response).to redirect_to(root_path)
       end
     end
 
