@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  # skip_before_action :user_logged_in?, only: %i[new create]
-  # skip_before_action :user_confirmed?, only: %i[new create confirm_number_new confirm_number]
-  # include Sessions
+  skip_before_action :user_logged_in?, only: %i[new create]
+  skip_before_action :user_confirmed?, only: %i[new create confirm_number_new confirm_number]
+
+  include Sessions
 
   def create
     @user = User.new(user_params)
