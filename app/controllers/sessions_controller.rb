@@ -14,12 +14,7 @@ class SessionsController < ApplicationController
 
   def create
     if user&.authenticate(session_params[:password])
-      log_in user
-
-      return redirect_to confirm_phone_number_path unless user.confirmed?
-      return redirect_to_complete_your_profile if user.blood_type.nil?
-
-      redirect_back_or root_path
+      login_and_redirect user
     else
       flash.now[:error] = t('invalid_phone_or_password')
       render 'new', status: :unauthorized
@@ -33,7 +28,20 @@ class SessionsController < ApplicationController
     @current_session = Session.find_by(id: session[:user_session_id])
     @current_session.destroy
     session[:session_id] = nil
+    flash[:success] = t('logged_out_flash')
+
     redirect_to login_path
+  end
+
+  private
+
+  def login_and_redirect(user)
+    log_in user
+
+    return redirect_to confirm_phone_number_path unless user.confirmed?
+    return redirect_to_complete_your_profile if user.blood_type.nil?
+
+    redirect_back_or root_path
   end
 
   def user

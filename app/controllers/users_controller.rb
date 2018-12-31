@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   skip_before_action :user_logged_in?, only: %i[new create]
-  skip_before_action :user_confirmed?, only: %i[new create confirm_number_new confirm_number]
+  skip_before_action :user_confirmed?, only: %i[new create]
 
   include Sessions
 

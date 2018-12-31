@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2018_12_28_203645) do
     t.bigint "user_id"
     t.string "ip_address"
     t.string "user_agent"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"

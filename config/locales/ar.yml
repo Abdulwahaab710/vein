@@ -9,3 +9,8 @@ ar:
   create_account: 'إنشاء حسابي'
   signup_success_flash: 'مرحبا فيك في ڤين، لقد تم انشاء حسابك بنجاح'
   missing_required_params: 'Required parameters are missing.'
+  please_login: 'Please log in.'
+  invalid_phone_or_password: 'Invalid phone or password combination'
+  login: "Log in"
+  signup_now: 'Sign up now!'
+  logged_out_flash: 'You have successfully logged out!'

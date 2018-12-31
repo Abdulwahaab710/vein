@@ -101,6 +101,26 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    before :each do
+      user = FactoryBot.create(:user)
+      FactoryBot.create(:session, user: user)
+
+      login_as user
+    end
+
+    context 'when the user is logged in' do
+      it 'returns redirects to login' do
+        delete :destroy
+        expect(response).to redirect_to(login_path)
+      end
+
+      it 'deletes user session' do
+        expect { delete :destroy }.to change { Session.count }.from(1).to(0)
+      end
+    end
+  end
+
   private
 
   def session_params

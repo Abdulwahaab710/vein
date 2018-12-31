@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :session do
-    user { nil }
-    ip_address { 'MyString' }
-    user_agent { 'MyString' }
+    user
+    ip_address { '127.0.0.1' }
+    user_agent { 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15' }
     is_deleted { false }
   end
 
