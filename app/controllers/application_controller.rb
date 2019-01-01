@@ -28,13 +28,11 @@ class ApplicationController < ActionController::Base
     return if logged_in?
 
     store_location
-    flash[:danger] = t('please_login')
+    flash[:error] = t('please_login')
     redirect_to login_url
   end
 
   def user_confirmed?
-    return if current_user.nil?
-
-    return redirect_to confirm_phone_number_path unless current_user.confirmed?
+    return redirect_to confirm_phone_number_path unless current_user&.confirmed?
   end
 end
