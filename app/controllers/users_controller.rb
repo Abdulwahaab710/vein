@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  # skip_before_action :user_logged_in?, only: %i[new create]
-  # skip_before_action :user_confirmed?, only: %i[new create confirm_number_new confirm_number]
-  # include Sessions
+  skip_before_action :user_logged_in?, only: %i[new create]
+  skip_before_action :user_confirmed?, only: %i[new create]
+
+  include Sessions
 
   def create
     @user = User.new(user_params)
@@ -18,7 +19,8 @@ class UsersController < ApplicationController
   end
 
   def new
-    # return redirect_back_or root_path if logged_in?
+    return redirect_back_or root_path if logged_in?
+
     @user = User.new
   end
 

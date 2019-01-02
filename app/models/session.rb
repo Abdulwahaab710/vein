@@ -3,7 +3,7 @@
 class Session < ApplicationRecord
   belongs_to :user
 
-  default_scope { where(is_deleted: nil) }
+  default_scope { where.not(is_deleted: true) }
 
   validates :user_agent, :ip_address, presence: true
 
