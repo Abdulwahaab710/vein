@@ -20,3 +20,5 @@ Style/EmptyMethod:
   Enabled: false
 Rails/InverseOf:
   Enabled: false # disable temporary until I figure out how to fix inverse_of
+Lint/PercentStringArray:
+  Enabled: false
