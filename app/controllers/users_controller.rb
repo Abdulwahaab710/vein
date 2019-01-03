@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    return render :new, status: :bad_request unless @user.save!
+    return render :new, status: :bad_request unless @user.save
 
     SendConfirmationCodeJob.perform_later(@user)
     flash[:success] = t('signup_success_flash')
