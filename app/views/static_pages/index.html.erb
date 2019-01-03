@@ -3,12 +3,12 @@ html, body { height: 100%; overflow: hidden; }
 body{
   background: linear-gradient( rgba(0, 0, 0, 0.6),
     rgba(0, 0, 0, 0.6) ), url("<%= asset_path('background.jpg') %>") no-repeat center fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 h1 {
   color: white;
+}
+a.logo {
+  color: white !important;
 }
 </style>
 <h1><%= t('hello') %></h1>

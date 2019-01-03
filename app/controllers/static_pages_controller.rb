@@ -6,5 +6,6 @@ class StaticPagesController < ApplicationController
   layout false
 
   def index
+    render :index, layout: 'application_with_transparent_header'
   end
 end
