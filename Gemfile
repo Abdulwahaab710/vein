@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'uikit-rails'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
