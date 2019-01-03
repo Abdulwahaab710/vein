@@ -46,3 +46,5 @@ en:
   login: "Log in"
   signup_now: 'Sign up now!'
   logged_out_flash: 'You have successfully logged out!'
+  language: 'language'
+  new_user: 'New user?'
