@@ -1,0 +1,21 @@
+<nav class="uk-navbar-container uk-margin" uk-navbar="mode: click">
+  <% if I18n.locale == :ar %>
+    <div class='uk-navbar-right'>
+      <ul class="uk-navbar-nav">
+        <li>
+          <%= render 'layouts/locale_dropdown.html.erb' %>
+        </li>
+        <li class="uk-active"><%= link_to 'Vein', root_path %></li>
+      </ul>
+    </div>
+  <% else %>
+    <div class='uk-navbar-left'>
+      <ul class="uk-navbar-nav">
+        <li class="uk-active"><%= link_to 'Vein', root_path %></li>
+        <li>
+          <%= render 'layouts/locale_dropdown.html.erb' %>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</nav>

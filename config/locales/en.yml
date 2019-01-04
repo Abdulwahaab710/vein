@@ -30,4 +30,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world!'
+  signup: 'Signup'
+  signup_title: 'Signup'
+  name: 'Name'
+  phone: 'Phone number'
+  password: 'Password'
+  password_confirmation: 'Password confirmation'
+  create_account: 'Create my account'
+  signup_success_flash: 'Welcome to Vein, your account has been create!'
+  missing_required_params: 'Required parameters are missing.'
+  confirmation_sms_message: "%{confirm_token} is your vein confirmation token"
+  please_login: 'Please log in.'
+  invalid_phone_or_password: 'Invalid phone or password combination'
+  login: "Log in"
+  signup_now: 'Sign up now!'
+  logged_out_flash: 'You have successfully logged out!'
+  language: 'language'
+  new_user: 'New user?'

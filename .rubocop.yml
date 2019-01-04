@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+    - config/unicorn.rb
+    - config/routes.rb
+    - db/**
+    - db/**/**
+    - Guardfile
+    - bin/**
+    - vendor/**.**
+    - spec/factories.rb
+Rails:
+  Enabled: true
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  ExcludedMethods: ['describe', 'context']
+Style/EmptyMethod:
+  Enabled: false
+Rails/InverseOf:
+  Enabled: false # disable temporary until I figure out how to fix inverse_of

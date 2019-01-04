@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_16_211221) do
+ActiveRecord::Schema.define(version: 2018_12_28_203645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,42 @@ ActiveRecord::Schema.define(version: 2018_12_16_211221) do
     t.index ["city_id"], name: "index_districts_on_city_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.boolean "is_deleted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "password_digest"
+    t.string "confirm_token"
+    t.boolean "phone_confirmed"
+    t.boolean "is_donor"
+    t.boolean "is_recipient"
+    t.bigint "blood_type_id"
+    t.bigint "district_id"
+    t.bigint "city_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blood_type_id"], name: "index_users_on_blood_type_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
+    t.index ["confirm_token"], name: "index_users_on_confirm_token", unique: true
+    t.index ["district_id"], name: "index_users_on_district_id"
+    t.index ["phone"], name: "index_users_on_phone", unique: true
+  end
+
   add_foreign_key "blood_compatibilities", "blood_types", column: "donator_id"
   add_foreign_key "blood_compatibilities", "blood_types", column: "receiver_id"
   add_foreign_key "cities", "countries"
   add_foreign_key "districts", "cities"
+  add_foreign_key "sessions", "users"
+  add_foreign_key "users", "blood_types"
+  add_foreign_key "users", "cities"
+  add_foreign_key "users", "districts"
 end

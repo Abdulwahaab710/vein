@@ -1,0 +1,11 @@
+<a href="#"><%= t('language') %></a>
+<div class="uk-navbar-dropdown">
+  <ul class="uk-nav uk-navbar-dropdown-nav">
+    <li>
+      <%= link_to 'عربي', change_locale_path(locale: 'ar'), method: :post, remote: true, class: 'locale-btn' %>
+    </li>
+    <li>
+      <%= link_to 'English', change_locale_path(locale: 'en'), method: :post, remote: true, class: 'locale-btn' %>
+    </li>
+  </ul>
+</div>
