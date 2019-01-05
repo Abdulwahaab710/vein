@@ -120,6 +120,28 @@ RSpec.describe User, type: :model do
       )
       expect(user.confirm_token).not_to eq(nil)
     end
+
+    it 'enforces phone number to be numbers only' do
+      expect(
+        User.new(
+          name: 'John Smith', phone: 'aaaa123456788',
+          password: 'password123', password_confirmation: 'password123',
+          blood_type: blood_type,
+          district: district,
+          city: city, confirm_token: nil
+        )
+      ).to be_invalid
+
+      expect(
+        User.new(
+          name: 'John Smith', phone: '123456788',
+          password: 'password123', password_confirmation: 'password123',
+          blood_type: blood_type,
+          district: district,
+          city: city, confirm_token: nil
+        )
+      ).to be_valid
+    end
   end
 
   context 'when updating the user' do
@@ -160,6 +182,10 @@ RSpec.describe User, type: :model do
       user.update(is_donor: true)
       expect(user.update(is_recipient: true)).to eq(false)
       expect(user.update(is_donor: false, is_recipient: true)).to eq(true)
+    end
+
+    it 'enforces for a user phone number to be only numbers' do
+      expect(user.update(phone: 'a123123123')).to eq(false)
     end
   end
 

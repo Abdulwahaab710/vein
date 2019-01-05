@@ -5,7 +5,10 @@ class User < ApplicationRecord
   VALID_PHONE_NUMBER_REGEX = /\A(\d+)\z/i.freeze
 
   validates :name, presence: true
-  validates :phone, presence: true, uniqueness: true
+  validates :phone,
+            format: VALID_PHONE_NUMBER_REGEX,
+            presence: true,
+            uniqueness: true
   validates :confirm_token, uniqueness: true
 
   validates :password,
