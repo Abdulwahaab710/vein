@@ -38,6 +38,8 @@ class SessionsController < ApplicationController
   def login_and_redirect(user)
     log_in user
 
+    return redirect_to edit_user_path if user.blood_type.nil?
+
     return redirect_to confirm_phone_number_path unless user.confirmed?
 
     redirect_back_or root_path
