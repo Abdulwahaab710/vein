@@ -12,5 +12,11 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
 
+  get '/cities/:id', to: 'cities#show'
+
   get '/confirm_phone', to: 'users#confirm_phone_number', as: :confirm_phone_number
+  post '/confirm_phone', to: 'users#verify_phone_number'
+
+  get '/settings/profile', to: 'users#edit', as: :edit_user
+  patch '/settings/profile', to: 'users#update'
 end
