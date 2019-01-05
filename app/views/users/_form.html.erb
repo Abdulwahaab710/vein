@@ -1,0 +1,46 @@
+<h3 class="uk-card-title uk-text-center"><%= t('signup') %></h3>
+<%= form_for(@user, url: signup_path) do |f| %>
+
+  <%= render 'shared/error_messages', obj: @user %>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :name, t('name') %>
+    <div class="uk-inline uk-width-1-1">
+      <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: user"></span>
+      <%= f.text_field :name, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:name].empty?}" %>
+    </div>
+  </div>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :phone, t('phone') %>
+    <div class="uk-inline uk-width-1-1">
+      <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: phone"></span>
+      <%= f.phone_field :phone, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:phone].empty?}" %>
+    </div>
+  </div>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :password, t('password') %>
+    <div class="uk-inline uk-width-1-1">
+      <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: lock"></span>
+      <%= f.password_field :password, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:password].empty?}" %>
+    </div>
+  </div>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :password_confirmation, t('password_confirmation') %>
+    <div class="uk-inline uk-width-1-1">
+      <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: lock"></span>
+      <%= f.password_field :password_confirmation, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:password_confirmation].empty?}" %>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <%= f.submit t('create_account'), class: "uk-button uk-button-danger uk-button-large uk-width-1-1" %>
+  </div>
+
+  <div class="uk-text-small uk-text-center">
+    <p><%= t('existing_user') %> <%= link_to t('login_now'), login_path %></p>
+  </div>
+
+<% end %>

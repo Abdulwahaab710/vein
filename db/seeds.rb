@@ -33,6 +33,14 @@ blood_compatiblity.keys.each do |blood_type|
   end
 end
 
+def add_cities
+  yemen_cities = JSON.parse(File.read('db/yemen_cities.json'))
+  yemen = Country.find_or_create_by(name: 'Yemen', area_code: '967')
+  yemen_cities.each do |city|
+    City.find_or_create_by(name: city['name'], ar_name: city['ar_name'], country: yemen)
+  end
+end
+
 def blood_types
   BloodType.all
 end
