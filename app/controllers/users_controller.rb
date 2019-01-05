@@ -54,6 +54,22 @@ class UsersController < ApplicationController
     redirect_to edit_user_path
   end
 
+  def edit_phone_number
+    @user = current_user
+  end
+
+  def update_phone_number
+    @user = current_user
+    return render :edit_phone_number, status: :bad_request unless @user.update(
+      phone: params[:user][:phone],
+      phone_confirmed: false
+    )
+
+    flash[:success] = t('successfully_updated_phone')
+    SendConfirmationCodeJob.perform_later(@user)
+    redirect_to confirm_phone_number_path
+  end
+
   private
 
   def user_params

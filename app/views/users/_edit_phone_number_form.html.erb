@@ -1,0 +1,16 @@
+<h3 class="uk-card-title uk-text-center"><%= t('update_phone') %></h3>
+<%= form_for(@user, url: edit_user_phone_number_path) do |f| %>
+
+  <%= render 'shared/error_messages', obj: @user %>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :phone, t('phone') %>
+    <div class="uk-inline uk-width-1-1">
+      <%= f.phone_field :phone, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:phone].empty?}", maxlength: 9 %>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <%= f.submit t('update'), class: "uk-button uk-button-danger uk-button-large uk-width-1-1" %>
+  </div>
+<% end %>

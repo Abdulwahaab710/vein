@@ -41,7 +41,7 @@ RSpec.describe UsersController, type: :controller do
     context 'when users params are missing' do
       before(:each) { post :create }
 
-      it 'flashes with a success messaage' do
+      it 'flashes with an error messaage' do
         expect(flash[:error]).to eq(t('missing_required_params'))
       end
 
@@ -197,6 +197,78 @@ RSpec.describe UsersController, type: :controller do
 
       it 'updates blood_type' do
         expect(User.find(user.id).blood_type).to eq(blood_type)
+      end
+    end
+  end
+
+  describe 'GET #edit_phone_number' do
+    before :each do
+      user = FactoryBot.create(:user, phone_confirmed: true)
+      FactoryBot.create(:session, user: user)
+
+      login_as user
+      get :edit_phone_number
+    end
+
+    it 'renders template edit_phone_number' do
+      expect(response).to render_template('edit_phone_number')
+    end
+
+    it 'returns success' do
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe 'PATCH #update_phone_number' do
+    let(:user) { FactoryBot.create(:user, name: 'John', phone_confirmed: true) }
+
+    context 'when the user submits a valid number' do
+      before :each do |test|
+        FactoryBot.create(:session, user: user)
+        @phone = '711123123'
+
+        login_as user
+        patch :update_phone_number, params: { user: { phone: @phone } } unless test.metadata[:skip_before_each]
+      end
+
+      it 'redirects to confirm_phone_number' do
+        expect(response).to redirect_to(confirm_phone_number_path)
+      end
+
+      it 'flashes with a success message' do
+        expect(flash[:success]).to eq(t('successfully_updated_phone'))
+      end
+
+      it 'updates phone number' do
+        expect(User.find(user.id).phone).to eq(@phone)
+      end
+
+      it 'updates user phone_confirmed to false' do
+        expect(User.find(user.id).phone_confirmed).to eq(false)
+      end
+
+      it 'send confirmation code upon completing signup', :skip_before_each do
+        ActiveJob::Base.queue_adapter = :test
+        expect { patch :update_phone_number, params: { user: { phone: @phone } } }.to have_enqueued_job(SendConfirmationCodeJob)
+          .with(User.find_by(phone: @phone))
+      end
+    end
+
+    context 'when the user submits an invalid number' do
+      before :each do |test|
+        FactoryBot.create(:session, user: user)
+        @phone = '7aaa11123123'
+
+        login_as user
+        patch :update_phone_number, params: { user: { phone: @phone } } unless test.metadata[:skip_before_each]
+      end
+
+      it 'renders template edit_phone_number' do
+        expect(response).to render_template('edit_phone_number')
+      end
+
+      it 'returns an http_status with bad_request' do
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end
