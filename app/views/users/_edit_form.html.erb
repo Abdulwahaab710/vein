@@ -1,0 +1,41 @@
+<h3 class="uk-card-title uk-text-center"><%= t('update_profile') %></h3>
+<%= form_for(@user, url: edit_user_path) do |f| %>
+
+  <%= render 'shared/error_messages', obj: @user %>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :name, t('name') %>
+    <div class="uk-inline uk-width-1-1">
+      <%= f.text_field :name, class: "uk-input #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:name].empty?}" %>
+    </div>
+  </div>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :blood_type, t('blood_type') %>
+    <div class="uk-inline uk-width-1-1">
+      <%= f.select :blood_type_id, options_for_select(
+        @blood_types, @user&.blood_type_id
+      ), {}, class: 'uk-select', include_blank: true, required: true %>
+    </div>
+  </div>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :city, t('city') %>
+    <div class="uk-inline uk-width-1-1">
+      <%= f.select :city_id, options_for_select(
+        @cities, @user&.city_id
+      ), {}, class: 'uk-select', id: 'user_city', include_blank: true, required: true %>
+    </div>
+  </div>
+
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :district, t('district') %>
+    <div class="uk-inline uk-width-1-1">
+      <%= f.select :district_id, options_for_select(@districts, @user&.district_id), {}, class: 'uk-select', id: 'districts', include_blank: true, required: true %>
+    </div>
+  </div>
+
+  <div class="uk-margin">
+    <%= f.submit t('update'), class: "uk-button uk-button-danger uk-button-large uk-width-1-1" %>
+  </div>
+<% end %>
