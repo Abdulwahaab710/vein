@@ -62,3 +62,5 @@ en:
   update: 'Update'
   settings: 'Settings'
   successfully_updated_profile: 'You have successfully updated your profile!'
+  profile: 'Profile'
+  update_phone: 'Update phone number'

@@ -19,4 +19,7 @@ Rails.application.routes.draw do
 
   get '/settings/profile', to: 'users#edit', as: :edit_user
   patch '/settings/profile', to: 'users#update'
+
+  get '/settings/phone', to: 'users#edit_phone_number', as: :edit_user_phone_number
+  patch '/settings/phone', to: 'users#update_phone_number'
 end
