@@ -35,5 +35,6 @@ module Vein
     logger.formatter                = config.log_formatter
     config.log_tags                 = %i[subdomain uuid]
     config.logger                   = ActiveSupport::TaggedLogging.new(logger)
+    config.active_job.queue_adapter = :sidekiq
   end
 end

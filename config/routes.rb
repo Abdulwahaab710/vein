@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root to: 'static_pages#index'
 
@@ -19,4 +21,6 @@ Rails.application.routes.draw do
 
   get '/settings/profile', to: 'users#edit', as: :edit_user
   patch '/settings/profile', to: 'users#update'
+
+  mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 end
