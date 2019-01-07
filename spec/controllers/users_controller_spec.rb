@@ -171,7 +171,8 @@ RSpec.describe UsersController, type: :controller do
           name: @name,
           district_id: district.id,
           city_id: district.city.id,
-          blood_type_id: blood_type.id
+          blood_type_id: blood_type.id,
+          is_donor: 1
         } }
       end
 
