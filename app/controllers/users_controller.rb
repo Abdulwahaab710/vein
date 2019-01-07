@@ -61,7 +61,7 @@ class UsersController < ApplicationController
   end
 
   def user_profile_params
-    params.require(:user).permit(:name, :district_id, :city_id, :blood_type_id)
+    params.require(:user).permit(:name, :district_id, :city_id, :blood_type_id, :is_donor)
   end
 
   def cities_names_with_current_locale

@@ -35,6 +35,16 @@
     </div>
   </div>
 
+  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+    <%= f.label :is_donor do %>
+      <% if I18n.locale == :ar %>
+        <%= t('enrol_as_a_donor') %> <%= f.check_box :is_donor, class: 'uk-checkbox uk-form-danger' %>
+      <% else %>
+        <%= f.check_box :is_donor, class: 'uk-checkbox' %> <%= t('enrol_as_a_donor') %>
+      <% end %>
+    <% end %>
+  </div>
+
   <div class="uk-margin">
     <%= f.submit t('update'), class: "uk-button uk-button-danger uk-button-large uk-width-1-1" %>
   </div>
