@@ -3,7 +3,7 @@
 class SendConfirmationCodeJob < TwilioJob
   queue_as :default
 
-  def perform(user)
-    send_sms_message(user.phone, t('confirmation_sms_message', confirm_token: user.confirm_token))
+  def perform(user, _locale)
+    send_sms_message(user.phone, I18n.t('confirmation_sms_message', confirm_token: user.confirm_token))
   end
 end
