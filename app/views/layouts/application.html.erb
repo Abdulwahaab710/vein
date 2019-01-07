@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<%= tag.html dir: "#{'rtl' if rtl? }" do %>
   <head>
     <title>Vein</title>
     <%= csrf_meta_tags %>
@@ -17,10 +17,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js"></script>
   </head>
 
-  <body>
+  <%= tag.body class: "#{'gradient-background' if @body_gradient_background}" do %>
     <div class="">
       <%= render 'layouts/header' %>
       <%= yield %>
     </div>
-  </body>
-</html>
+  <% end %>
+<% end %>

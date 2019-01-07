@@ -10,19 +10,19 @@
 
               <%= render 'shared/error_messages', obj: nil %>
 
-              <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+              <div class="uk-margin">
                 <%= f.label :phone, t('phone') %>
                 <div class="uk-inline uk-width-1-1">
-                  <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: phone"></span>
-                  <%= f.phone_field :phone, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar}" %>
+                  <span class="uk-form-icon <%= 'uk-form-icon-flip' if rtl? %>" uk-icon="icon: phone"></span>
+                  <%= f.phone_field :phone, class: "uk-input uk-form-large" %>
                 </div>
               </div>
 
-              <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+              <div class="uk-margin">
                 <%= f.label :password, t('password') %>
                 <div class="uk-inline uk-width-1-1">
-                  <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: lock"></span>
-                  <%= f.password_field :password, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar}" %>
+                  <span class="uk-form-icon <%= 'uk-form-icon-flip' if rtl? %>" uk-icon="icon: lock"></span>
+                  <%= f.password_field :password, class: "uk-input uk-form-large" %>
                 </div>
               </div>
 
