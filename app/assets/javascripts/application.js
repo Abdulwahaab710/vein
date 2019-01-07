@@ -16,4 +16,5 @@
 //= require jquery
 //= require uikit
 //= require uikit-components
+//= require select2
 //= require_tree .

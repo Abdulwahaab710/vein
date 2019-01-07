@@ -24,14 +24,14 @@
     <div class="uk-inline uk-width-1-1">
       <%= f.select :city_id, options_for_select(
         @cities, @user&.city_id
-      ), {}, class: 'uk-select', id: 'user_city', include_blank: true, required: true %>
+      ), {}, class: 'uk-select select2-dropdown', id: 'user_city', include_blank: true, required: true %>
     </div>
   </div>
 
   <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
     <%= f.label :district, t('district') %>
     <div class="uk-inline uk-width-1-1">
-      <%= f.select :district_id, options_for_select(@districts, @user&.district_id), {}, class: 'uk-select', id: 'districts', include_blank: true, required: true %>
+      <%= f.select :district_id, options_for_select(@districts, @user&.district_id), {}, class: 'uk-select select2-dropdown', id: 'districts', include_blank: true, required: true %>
     </div>
   </div>
 
