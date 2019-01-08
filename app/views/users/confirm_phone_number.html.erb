@@ -10,11 +10,11 @@
 
               <%= render 'shared/error_messages', obj: nil %>
 
-              <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+              <div class="uk-margin">
                 <%= f.label :confirmation_code, t('confirmation_code') %>
                 <div class="uk-inline uk-width-1-1">
-                  <span class="uk-form-icon <%= 'uk-form-icon-flip' if I18n.locale == :ar %>" uk-icon="icon: commenting"></span>
-                  <%= f.number_field :confirmation_code, class: "uk-input uk-form-large #{'uk-text-right' if I18n.locale == :ar}", id: 'confirmation_code' %>
+                  <span class="uk-form-icon <%= 'uk-form-icon-flip' if rtl? %>" uk-icon="icon: commenting"></span>
+                  <%= f.number_field :confirmation_code, class: "uk-input uk-form-large", id: 'confirmation_code' %>
                 </div>
               </div>
 

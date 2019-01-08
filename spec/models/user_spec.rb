@@ -85,33 +85,6 @@ RSpec.describe User, type: :model do
       ).to be_valid
     end
 
-    it 'enforces uniqueness for confirm_token' do
-      user = User.create(
-        name: 'Abdulwahaab Ahmed', phone: '123456789', password: 'password123',
-        password_confirmation: 'password123', blood_type: blood_type,
-        district: district, city: city, confirm_token: '123456'
-      )
-      expect(
-        User.new(
-          name: 'John Smith', phone: '123456788',
-          password: 'password123', password_confirmation: 'password123',
-          blood_type: blood_type,
-          district: district,
-          city: city, confirm_token: user.confirm_token
-        )
-      ).to be_invalid
-
-      expect(
-        User.new(
-          name: 'John Smith', phone: '123456788',
-          password: 'password123', password_confirmation: 'password123',
-          blood_type: blood_type,
-          district: district,
-          city: city, confirm_token: '123457'
-        )
-      ).to be_valid
-    end
-
     it 'generates confirmation token' do
       user = User.create(
         name: 'Abdulwahaab Ahmed', phone: '123456789', password: 'password123',
@@ -144,16 +117,6 @@ RSpec.describe User, type: :model do
       )
       expect(user.update(phone: '123456788')).to eq(false)
       expect(user.update(phone: '123456789')).to eq(true)
-    end
-
-    it 'enforces uniqueness for confirm_token' do
-      user2 = User.create(
-        name: 'Abdulwahaab Ahmed', phone: '123456788', password: 'password123',
-        password_confirmation: 'password123', blood_type: blood_type,
-        district: district, city: city
-      )
-      expect(user.update(confirm_token: user2.confirm_token)).to eq(false)
-      expect(user.update(confirm_token: '123457')).to eq(true)
     end
 
     it 'enforces for a user to be either a donor or a recipient' do

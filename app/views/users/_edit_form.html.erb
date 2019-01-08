@@ -3,14 +3,14 @@
 
   <%= render 'shared/error_messages', obj: @user %>
 
-  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+  <div class="uk-margin">
     <%= f.label :name, t('name') %>
     <div class="uk-inline uk-width-1-1">
-      <%= f.text_field :name, class: "uk-input #{'uk-text-right' if I18n.locale == :ar} #{'uk-form-danger' unless @user.errors[:name].empty?}" %>
+      <%= f.text_field :name, class: "uk-input #{'uk-form-danger' unless @user.errors[:name].empty?}" %>
     </div>
   </div>
 
-  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+  <div class="uk-margin">
     <%= f.label :blood_type, t('blood_type') %>
     <div class="uk-inline uk-width-1-1">
       <%= f.select :blood_type_id, options_for_select(
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+  <div class="uk-margin">
     <%= f.label :city, t('city') %>
     <div class="uk-inline uk-width-1-1">
       <%= f.select :city_id, options_for_select(
@@ -28,20 +28,16 @@
     </div>
   </div>
 
-  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+  <div class="uk-margin">
     <%= f.label :district, t('district') %>
     <div class="uk-inline uk-width-1-1">
       <%= f.select :district_id, options_for_select(@districts, @user&.district_id), {}, class: 'uk-select', id: 'districts', include_blank: true, required: true %>
     </div>
   </div>
 
-  <div class="uk-margin <%= 'uk-text-right' if I18n.locale == :ar %>">
+  <div class="uk-margin">
     <%= f.label :is_donor do %>
-      <% if I18n.locale == :ar %>
-        <%= t('enrol_as_a_donor') %> <%= f.check_box :is_donor, class: 'uk-checkbox uk-form-danger' %>
-      <% else %>
         <%= f.check_box :is_donor, class: 'uk-checkbox' %> <%= t('enrol_as_a_donor') %>
-      <% end %>
     <% end %>
   </div>
 
