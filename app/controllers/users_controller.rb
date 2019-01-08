@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     return render :new, status: :bad_request unless @user.save
 
-    SendConfirmationCodeJob.perform_later(@user)
+    SendConfirmationCodeJob.perform_later(@user, I18n.locale.to_s)
     flash[:success] = t('signup_success_flash')
     redirect_to confirm_phone_number_path
   rescue ActionController::ParameterMissing
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     return head :not_found if current_user.phone_confirmed?
 
     current_user.generate_confirm_token
-    SendConfirmationCodeJob.perform_later(current_user)
+    SendConfirmationCodeJob.perform_later(current_user, I18n.locale.to_s)
     head :success
   end
 
