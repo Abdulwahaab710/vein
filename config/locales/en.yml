@@ -1,65 +1,37 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  blood_type: 'Blood type'
+  city: 'City'
+  confirm_phone_number: 'Confirm your phone number'
+  confirmation_code: 'Confirmation code'
+  confirmation_sms_message: "%{confirm_token} is your vein confirmation token"
+  create_account: 'Create my account'
+  did_not_get_the_code: "If you didn't get it,"
+  district: 'District'
+  enrol_as_a_donor: 'Enrol as a donor!'
+  enter_confirmation_code: "Enter the confirmation code we sent to %{phone}"
+  existing_user: 'Already have an account?'
   hello: 'Hello world!'
-  signup: 'Signup'
-  signup_title: 'Signup'
+  invalid_code: 'Invalid code'
+  invalid_phone_or_password: 'Invalid phone or password combination'
+  language: 'language'
+  logged_out_flash: 'You have successfully logged out!'
+  login: "Log in"
+  login_now: 'Login now!'
+  logout: 'Logout'
+  missing_required_params: 'Required parameters are missing.'
   name: 'Name'
-  phone: 'Phone number'
+  new_user: 'New user?'
   password: 'Password'
   password_confirmation: 'Password confirmation'
-  create_account: 'Create my account'
-  signup_success_flash: 'Welcome to Vein, your account has been create!'
-  missing_required_params: 'Required parameters are missing.'
-  confirmation_sms_message: "%{confirm_token} is your vein confirmation token"
+  phone: 'Phone number'
   please_login: 'Please log in.'
-  invalid_phone_or_password: 'Invalid phone or password combination'
-  login: "Log in"
-  signup_now: 'Sign up now!'
-  logged_out_flash: 'You have successfully logged out!'
-  language: 'language'
-  new_user: 'New user?'
-  existing_user: 'Already have an account?'
-  login_now: 'Login now!'
-  confirm_phone_number: 'Confirm your phone number'
-  submit: 'Submit'
-  invalid_code: 'Invalid code'
-  confirmation_code: 'Confirmation code'
-  city: 'City'
-  blood_type: 'Blood type'
-  logout: 'Logout'
-  district: 'District'
-  update_profile: 'Update profile'
-  update: 'Update'
+  resend_confirm_code: 'we can resend the code'
   settings: 'Settings'
+  signup: 'Signup'
+  signup_now: 'Sign up now!'
+  signup_success_flash: 'Welcome to Vein, your account has been create!'
+  signup_title: 'Signup'
+  submit: 'Submit'
   successfully_updated_profile: 'You have successfully updated your profile!'
-  enrol_as_a_donor: 'Enrol as a donor!'
+  update: 'Update'
+  update_profile: 'Update profile'

@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   get '/settings/profile', to: 'users#edit', as: :edit_user
   patch '/settings/profile', to: 'users#update'
 
+  post '/resend_confirm_code', to: 'users#resend_confirm_code', as: :resend_confirm_code
+
   mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 end

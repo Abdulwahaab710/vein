@@ -2,7 +2,7 @@
 
 class UsersController < ApplicationController
   skip_before_action :user_logged_in?, only: %i[new create]
-  skip_before_action :user_confirmed?, only: %i[new create confirm_phone_number verify_phone_number]
+  skip_before_action :user_confirmed?, only: %i[new create confirm_phone_number verify_phone_number resend_confirm_code]
 
   include Sessions
 
@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     return render :new, status: :bad_request unless @user.save
 
-    SendConfirmationCodeJob.perform_later(@user)
+    SendConfirmationCodeJob.perform_later(@user, I18n.locale.to_s)
     flash[:success] = t('signup_success_flash')
     redirect_to confirm_phone_number_path
   rescue ActionController::ParameterMissing
@@ -52,6 +52,14 @@ class UsersController < ApplicationController
 
     flash[:success] = t('successfully_updated_profile')
     redirect_to edit_user_path
+  end
+
+  def resend_confirm_code
+    return head :not_found if current_user.phone_confirmed?
+
+    current_user.generate_confirm_token
+    SendConfirmationCodeJob.perform_later(current_user, I18n.locale.to_s)
+    head :ok
   end
 
   private

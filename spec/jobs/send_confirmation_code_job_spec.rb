@@ -6,7 +6,7 @@ RSpec.describe SendConfirmationCodeJob, type: :job do
   include ActiveJob::TestHelper
 
   let(:user) { FactoryBot.create(:user) }
-  let(:job) { SendConfirmationCodeJob.perform_later(user) }
+  let(:job) { SendConfirmationCodeJob.perform_later(user, 'en') }
 
   context 'when running the job' do
     it 'queues the job' do
@@ -14,12 +14,12 @@ RSpec.describe SendConfirmationCodeJob, type: :job do
     end
 
     it 'sends an sms messages to the user' do
-      SendConfirmationCodeJob.perform_now(user)
+      SendConfirmationCodeJob.perform_now(user, 'ar')
       expect(FakeSMS.messages.last[:to]).to eq(user.phone)
     end
 
     it 'sends the confirmation code to the user' do
-      SendConfirmationCodeJob.perform_now(user)
+      SendConfirmationCodeJob.perform_now(user, 'ar')
       expect(FakeSMS.messages.last[:body]).to eq(t('confirmation_sms_message', confirm_token: user.confirm_token))
     end
   end

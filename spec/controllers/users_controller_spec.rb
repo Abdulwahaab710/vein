@@ -32,7 +32,6 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it 'send confirmation code upon completing signup', :skip_before_each do
-        ActiveJob::Base.queue_adapter = :test
         expect { post :create, params: { user: user_params } }.to have_enqueued_job(SendConfirmationCodeJob)
           .with(User.find_by(phone: '123456789'))
       end
@@ -198,6 +197,44 @@ RSpec.describe UsersController, type: :controller do
 
       it 'updates blood_type' do
         expect(User.find(user.id).blood_type).to eq(blood_type)
+      end
+    end
+  end
+
+  describe 'POST #resend_confirm_code' do
+    context "when the user's phone number has not been confirmed" do
+      let(:user) { FactoryBot.create(:user) }
+
+      before(:each) do
+        FactoryBot.create(:session, user: user)
+
+        login_as user
+      end
+
+      it 'send confirmation code' do
+        expect { post :resend_confirm_code }.to have_enqueued_job(SendConfirmationCodeJob).with(
+          User.find(user.id), I18n.locale.to_s
+        )
+      end
+
+      it 'returns http status success' do
+        post :resend_confirm_code
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context "when the user's phone number has been confirmed" do
+      let(:user) { FactoryBot.create(:user, phone_confirmed: true) }
+
+      before(:each) do
+        FactoryBot.create(:session, user: user)
+
+        login_as user
+      end
+
+      it 'returns http status not found' do
+        post :resend_confirm_code
+        expect(response).to have_http_status(:not_found)
       end
     end
   end
