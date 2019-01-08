@@ -7,4 +7,27 @@ a.logo {
   color: white !important;
 }
 </style>
-<h1><%= t('hello') %></h1>
+<header id="hero-header">
+  <section class="uk-section-secondary">
+    <!-- change her the bg image + The overlay color/opacity/direction (under style="") -->
+    <div id="change-her-the-bg-image" class="uk-background-norepeat uk-background-cover uk-background-center-center uk-background-image@s uk-section uk-section-large uk-flex uk-flex-middle" uk-parallax="bgx: 0,-60" uk-height viewport="offset-top: false" style="background: linear-gradient(to right, #89216B, rgba(255, 255, 255, 0)), url('https://www.bbntimes.com/images/articles/companies/Donating_Blood_.jpg'); background-position-y: 0%, 70%;">
+      <div class="uk-width-1-1">
+        <!-- hero container -->
+        <div class="uk-container uk-container-large">
+          <!-- Heading: Add margin top for h1 - like this the text looks more center v beacuse the navbar is transpernt -->
+          <h1 class="uk-margin-small uk-margin-medium-top uk-width-large@m uk-text-left@m uk-text-center uk-h6 uk-heading-line" uk-parallax="opacity: 1,0;viewport: 0.95;media: @s">
+            <!-- extra span for uk-heading-line -->
+            <span>UiKit Navbar & Hero With OffCanvas</span>
+          </h1>
+          <h2 class="uk-margin-small uk-text-left@m uk-text-center uk-heading-hero" uk-parallax="y: 0,60;opacity: 1,0;easing: 0.8;viewport: 0.95;media: @s">
+            Your blood is life!
+          </h2>
+          <!-- Arrow: With link to #main section + uk-scroll="" for smooth scrolling -->
+          <div class="uk-margin uk-text-left@m uk-text-center" uk-parallax="y: 0,450;opacity: 1,0;easing: 0.3;target: !.uk-section;media: @s">
+            <a uk-icon="icon: arrow-down;ratio: 1.5" class="uk-icon-link uk-icon" href="#main" uk-scroll=""></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
