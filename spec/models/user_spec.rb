@@ -222,4 +222,23 @@ RSpec.describe User, type: :model do
       expect(user.confirmed?).to eq(false)
     end
   end
+
+  context 'when calling #generate_confirm_token' do
+    let(:user) do
+      User.create(
+        name: 'Abdulwahaab Ahmed', phone: '123456789', password: 'password123',
+        password_confirmation: 'password123', blood_type: blood_type,
+        district: district, city: city, confirm_token: '123456', phone_confirmed: true
+      )
+    end
+
+    it 'change phone_confirmed to false' do
+      expect { user.generate_confirm_token }.to change { user.phone_confirmed }.from(true).to(false)
+    end
+
+    it 'regenerate a new confirm_token' do
+      user.generate_confirm_token
+      expect(user.confirm_token).not_to eq('123456')
+    end
+  end
 end
