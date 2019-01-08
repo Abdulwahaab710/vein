@@ -43,6 +43,11 @@ class User < ApplicationRecord
     phone_confirmed == true
   end
 
+  def generate_confirm_token
+    generate_token
+    update(phone_confirmed: false)
+  end
+
   private
 
   def user_is_donor_or_recipient?

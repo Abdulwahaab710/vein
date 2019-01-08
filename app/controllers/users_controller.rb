@@ -59,7 +59,7 @@ class UsersController < ApplicationController
 
     current_user.generate_confirm_token
     SendConfirmationCodeJob.perform_later(current_user, I18n.locale.to_s)
-    head :success
+    head :ok
   end
 
   private
