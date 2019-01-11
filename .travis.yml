@@ -7,7 +7,6 @@ addons:
 
 before_install:
   - "bundle install"
-  - "gem install rubocop"
 
 before_script:
   - cp config/database.yml.travis config/database.yml
@@ -15,7 +14,8 @@ before_script:
 script:
   - bin/rake db:create db:migrate RAILS_ENV=test
   - bin/rake
-  - rubocop app config spec
+  - bundle exec rubocop app config spec
+  - brakeman --exit-on-warn --quiet -f plain
 
 services:
   - redis-server
