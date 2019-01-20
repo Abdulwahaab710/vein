@@ -46,19 +46,50 @@ def blood_types
 end
 
 def generate_fake_data
+  return unless Rails.env.development?
+
   100.times do
     rand_boolean = [true, false].sample
+    country = countries.sample
+    city = country.cities.sample
     User.create!(
       name: Faker::Name.unique.name,
       phone: Faker::PhoneNumber.cell_phone,
       password: 'password',
       password_confirmation: 'password',
-      address: Faker::Address.street_address,
-      city: Faker::Address.city,
-      country: Faker::Address.country,
+      city: city,
       blood_type: blood_types.sample,
       is_donor: rand_boolean,
       is_recipient: !rand_boolean
     )
   end
+end
+
+DONOR_STATUS = [
+  {
+    status: 'Available',
+    available: true
+  },
+  {
+    status: 'Matching in progress',
+    available: false
+  },
+  {
+    status: 'Matched',
+    available: false
+  },
+  {
+    status: 'Donated',
+    available: false
+  }
+]
+
+def generate_donor_status
+  DONOR_STATUS.each do |status|
+    DonorStatus.find_or_create_by(status: status[:status], available: status[:available])
+  end
+end
+
+def countries
+  @countries ||= Country.all
 end
