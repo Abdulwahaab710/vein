@@ -13,7 +13,8 @@ Rails.application.config.content_security_policy do |policy|
   policy.object_src  :none
   policy.script_src  :self, 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit.min.js',
                      'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/js/uikit-icons.min.js'
-  policy.style_src   :self, :unsafe_inline, 'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css'
+  policy.style_src   :self, :unsafe_inline,
+                     'https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.25/css/uikit.min.css'
 
   # Specify URI for violation reports
   # policy.report_uri "/csp-violation-report-endpoint"
