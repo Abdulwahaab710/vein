@@ -2,6 +2,8 @@
 
 class User < ApplicationRecord
   before_validation(on: %i[create update]) { self.phone = phone.delete('_.()+-') if phone.present? }
+  before_update :update_donor_status, if: :is_donor_changed?
+
   VALID_PHONE_NUMBER_REGEX = /\A(\d+)\z/i.freeze
 
   validates :name, presence: true
@@ -24,6 +26,7 @@ class User < ApplicationRecord
   belongs_to :blood_type, optional: true
   belongs_to :district, optional: true
   belongs_to :city, optional: true
+  belongs_to :donor_status, optional: true
 
   include Tokenable
 
@@ -56,5 +59,9 @@ class User < ApplicationRecord
 
   def donor_and_recipient?
     [is_donor, is_recipient].compact.count(true) > 1
+  end
+
+  def update_donor_status
+    self.donor_status = DonorStatus.find_by(status: 'Available') if is_donor
   end
 end
