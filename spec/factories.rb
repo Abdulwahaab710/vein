@@ -6,6 +6,11 @@ FactoryBot.define do
     available { false }
   end
 
+  factory :blood_donation_request do
+    user { nil }
+    status { 'Matching in progress' }
+  end
+
   factory :session do
     user
     ip_address { '127.0.0.1' }
