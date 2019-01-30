@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :donor_status do
+    status { 'Available' }
+    available { false }
+  end
+
   factory :session do
     user
     ip_address { '127.0.0.1' }
