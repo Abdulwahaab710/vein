@@ -37,9 +37,18 @@ def add_cities
   yemen_cities = JSON.parse(File.read('db/yemen_cities.json'))
   yemen = Country.find_or_create_by(name: 'Yemen', area_code: '967')
   yemen_cities.each do |city|
-    City.find_or_create_by(name: city['name'], ar_name: city['ar_name'], country: yemen)
+    city_obj = City.find_or_create_by(name: city['name'], ar_name: city['ar_name'], country: yemen)
+    add_districts(city_obj, city['districts'])
   end
 end
+
+def add_districts(city, districts)
+  districts&.each do |district|
+    District.find_or_create_by(name: district['name'], ar_name: district['ar_name'], city: city)
+  end
+end
+
+add_cities
 
 def blood_types
   BloodType.all
