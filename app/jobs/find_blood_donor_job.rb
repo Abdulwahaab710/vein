@@ -4,15 +4,16 @@ class FindBloodDonorJob < TwilioJob
   queue_as :find_donor
 
   def perform(user, amount)
-    update_user_to_recipient(user)
+    user(user: user)
+    update_user_to_recipient
     blood_types = find_compatible_blood_types(user.blood_type)
     donors = find_available_donors(blood_types)
-    notify_and_donors_status(donors, amount)
+    notify_and_update_donors_status(donors, amount)
   end
 
   private
 
-  def update_user_to_recipient(user)
+  def update_user_to_recipient
     user.update(is_recipient: true, is_donor: false)
   end
 
@@ -27,7 +28,9 @@ class FindBloodDonorJob < TwilioJob
     end.flatten
   end
 
-  def notify_and_donors_status(donors, amount)
+  def notify_and_update_donors_status(donors, amount)
+    return waitlist_recipient if donors.count < amount
+
     cnt = 0
     donors.each do |donor|
       break if cnt >= amount
@@ -54,5 +57,13 @@ class FindBloodDonorJob < TwilioJob
 
   def matching_status
     @matching_status ||= DonorStatus.find_by(status: 'Matching in progress')
+  end
+
+  def waitlist_recipient(recipient)
+    recipient
+  end
+
+  def user(user:)
+    @user ||= user
   end
 end
