@@ -13,7 +13,41 @@
   },
   {
     "name": "Aden",
-    "ar_name": "عدن"
+    "ar_name": "عدن",
+    "districts": [
+      {
+        "name": "Al Buraiqeh",
+        "ar_name": "البريقة"
+      },
+      {
+        "name": "Al Mansura",
+        "ar_name": "المنصورة"
+      },
+      {
+        "name": "Al Mualla",
+        "ar_name": "المعلا"
+      },
+      {
+        "name": "Ash Shaikh Outhman",
+        "ar_name": "الشيخ عثمان"
+      },
+      {
+        "name": "Attawahi",
+        "ar_name": "التواهي"
+      },
+      {
+        "name": "Craiter",
+        "ar_name": "كريتر"
+      },
+      {
+        "name": "Dar Sad",
+        "ar_name": "دار سعد"
+      },
+      {
+        "name": "Khur Maksar",
+        "ar_name": "خور مكسر"
+      }
+    ]
   },
   {
     "name": "Ibb",
