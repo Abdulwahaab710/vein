@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_04_052536) do
+ActiveRecord::Schema.define(version: 2019_01_30_015524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2019_01_04_052536) do
     t.datetime "updated_at", null: false
     t.index ["donator_id"], name: "index_blood_compatibilities_on_donator_id"
     t.index ["receiver_id"], name: "index_blood_compatibilities_on_receiver_id"
+  end
+
+  create_table "blood_donation_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_blood_donation_requests_on_user_id"
   end
 
   create_table "blood_types", force: :cascade do |t|
@@ -54,7 +62,16 @@ ActiveRecord::Schema.define(version: 2019_01_04_052536) do
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ar_name"
     t.index ["city_id"], name: "index_districts_on_city_id"
+  end
+
+  create_table "donor_statuses", force: :cascade do |t|
+    t.string "status"
+    t.boolean "available"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["status"], name: "index_donor_statuses_on_status", unique: true
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -80,19 +97,23 @@ ActiveRecord::Schema.define(version: 2019_01_04_052536) do
     t.bigint "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "donor_status_id"
     t.index ["blood_type_id"], name: "index_users_on_blood_type_id"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["confirm_token"], name: "index_users_on_confirm_token", unique: true
     t.index ["district_id"], name: "index_users_on_district_id"
+    t.index ["donor_status_id"], name: "index_users_on_donor_status_id"
     t.index ["phone"], name: "index_users_on_phone", unique: true
   end
 
   add_foreign_key "blood_compatibilities", "blood_types", column: "donator_id"
   add_foreign_key "blood_compatibilities", "blood_types", column: "receiver_id"
+  add_foreign_key "blood_donation_requests", "users"
   add_foreign_key "cities", "countries"
   add_foreign_key "districts", "cities"
   add_foreign_key "sessions", "users"
   add_foreign_key "users", "blood_types"
   add_foreign_key "users", "cities"
   add_foreign_key "users", "districts"
+  add_foreign_key "users", "donor_statuses"
 end

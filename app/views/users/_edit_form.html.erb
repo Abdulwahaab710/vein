@@ -31,7 +31,8 @@
   <div class="uk-margin">
     <%= f.label :district, t('district') %>
     <div class="uk-inline uk-width-1-1">
-      <%= f.select :district_id, options_for_select(@districts, @user&.district_id), {}, class: 'uk-select', id: 'districts', include_blank: true, required: true %>
+      <%= f.select :district_id, options_for_select(@districts, @user&.district_id), {}, class: 'uk-select',
+        id: 'districts', include_blank: true, required: true %>
     </div>
   </div>
 

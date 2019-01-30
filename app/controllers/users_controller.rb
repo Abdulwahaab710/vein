@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user = current_user
     @blood_types = BloodType.pluck(:name, :id)
     @cities = cities_names_with_current_locale
-    @districts = current_user.city&.districts&.pluck(:name, :id) || []
+    @districts = district_name_with_current_locale
   end
 
   def update
@@ -76,5 +76,11 @@ class UsersController < ApplicationController
     return Country.find_by(name: 'Yemen')&.cities&.pluck(:ar_name, :id) if I18n.locale == :ar
 
     Country.find_by(name: 'Yemen')&.cities&.pluck(:name, :id)
+  end
+
+  def district_name_with_current_locale
+    return current_user.city&.districts&.pluck(:ar_name, :id) || [] if I18n.locale == :ar
+
+    current_user.city&.districts&.pluck(:name, :id) || []
   end
 end
