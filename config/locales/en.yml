@@ -35,3 +35,13 @@ en:
   successfully_updated_profile: 'You have successfully updated your profile!'
   update: 'Update'
   update_profile: 'Update profile'
+  pint: 'pint'
+  blood_donation_requests:
+    amount: 'Amount'
+    status: 'Status'
+    created_at: 'Created at'
+    updated_at: 'Last updated at'
+    confirm_withdraw: 'Are you sure you want to withdraw your request?'
+    title: 'Blood donation request'
+    withdrawn_blood_donation_requests: 'Withdrawn blood donation requests'
+    request_blood_donation: 'Request a blood donation'

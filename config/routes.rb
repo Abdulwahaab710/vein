@@ -24,5 +24,14 @@ Rails.application.routes.draw do
 
   post '/resend_confirm_code', to: 'users#resend_confirm_code', as: :resend_confirm_code
 
+  scope :blood_donations do
+    get '/requests', to: 'blood_donation_requests#index', as: :blood_donation_requests
+
+    get '/requests/new', to: 'blood_donation_requests#new', as: :request_blood_donation
+    post '/requests/new', to: 'blood_donation_requests#create'
+
+    delete '/requests/:id', to: 'blood_donation_requests#destroy', as: :blood_donation_request_withdraw
+  end
+
   mount Sidekiq::Web => '/sidekiq' if Rails.env.development?
 end

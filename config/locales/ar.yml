@@ -42,3 +42,8 @@ ar:
   successfully_updated_profile: 'You have successfully updated your profile!'
   update: 'Update'
   update_profile: 'Update profile'
+  blood_donation_requests:
+    amount: 'Amount'
+    status: 'Status'
+    created_at: 'Created at'
+    updated_at: 'Updated at'

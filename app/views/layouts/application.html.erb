@@ -18,8 +18,8 @@
   </head>
 
   <%= tag.body class: "#{'gradient-background' if @body_gradient_background}" do %>
-    <div class="">
-      <%= render 'layouts/header' %>
+    <%= render 'layouts/header' %>
+    <div class='uk-container'>
       <%= yield %>
     </div>
   <% end %>

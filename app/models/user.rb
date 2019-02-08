@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :sessions, dependent: :destroy
+  has_many :blood_donation_requests, dependent: :nullify
 
   def donor?
     is_donor == true
