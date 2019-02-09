@@ -53,7 +53,7 @@ RSpec.describe BloodDonationRequestsController, type: :controller do
     end
 
     it 'creates a blood donation request' do
-      expect{ post :create, params: { blood_donation_request: { amount: 1 } } }
+      expect { post :create, params: { blood_donation_request: { amount: 1 } } }
         .to change { BloodDonationRequest.count }.from(0).to(1)
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe BloodDonationRequestsController, type: :controller do
     end
 
     it 'creates a blood donation request' do
-      expect{ delete :destroy, params: { id: @blood_donation_request.id } }
+      expect { delete :destroy, params: { id: @blood_donation_request.id } }
         .to change { BloodDonationRequest.where(status: BloodDonationRequestStatus::WITHDRAWN).count }.from(0).to(1)
     end
   end
