@@ -1,0 +1,65 @@
+<div class='uk-section'>
+  <h3><%= t('blood_donation_requests.title').pluralize %></h3>
+  <%= link_to request_blood_donation_path, class: 'uk-button uk-button-primary' do %>
+    <span uk-icon='plus-circle' ></span>
+    <%= t('blood_donation_requests.request_blood_donation') %>
+  <% end %>
+  <div class='uk-overflow-auto'>
+    <table class='uk-table uk-table-middle uk-table-divider'>
+      <thead>
+        <tr>
+          <th class='uk-text-center'><%= t('blood_donation_requests.amount') %></th>
+          <th class='uk-text-center'><%= t('blood_donation_requests.status') %></th>
+          <th class='uk-text-center'><%= t('blood_donation_requests.created_at') %></th>
+          <th class='uk-text-center'><%= t('blood_donation_requests.updated_at') %></th>
+          <th class='uk-text-center'></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @blood_requests&.each do |blood_request| %>
+          <tr>
+            <td class='uk-text-center'><%= "#{blood_request.amount} #{t('pint')&.pluralize(blood_request.amount)}" %></td>
+            <td class='uk-text-center'>
+              <span class='uk-label <%= status_label_color(blood_request.status) %>'><%= blood_request.status %></span>
+            </td>
+            <td class='uk-text-center'><%= l(blood_request.updated_at.to_date, format: :long) %></td>
+            <td class='uk-text-center'><%= l(blood_request.created_at.to_date, format: :long) %></td>
+            <td class='uk-text-center'>
+              <%= button_to 'Withdraw', blood_donation_request_withdraw_path(blood_request), method: :delete,
+                remote: true, class: 'uk-button uk-button-danger',
+                data: {confirm: t('blood_donation_requests.confirm_withdraw') } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<hr class='uk-divider-icon'/>
+
+<div class='uk-section uk-overflow-auto'>
+  <h3><%= t('blood_donation_requests.withdrawn_blood_donation_requests') %></h3>
+  <div class='uk-overflow-auto'>
+    <table class='uk-table uk-table-middle uk-table-divider'>
+      <thead>
+        <tr>
+          <th class='uk-text-center'><%= t('blood_donation_requests.amount') %></th>
+          <th class='uk-text-center'><%= t('blood_donation_requests.status') %></th>
+          <th class='uk-text-center'><%= t('blood_donation_requests.created_at') %></th>
+          <th class='uk-text-center'><%= t('blood_donation_requests.updated_at') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cancelled_blood_requests&.each do |blood_request| %>
+          <tr>
+            <td class='uk-text-center'><%= blood_request.amount %></td>
+            <td class='uk-text-center'><span class='uk-label uk-label-danger'><%= blood_request.status %></span></td>
+            <td class='uk-text-center'><%= l(blood_request.updated_at.to_date, format: :long) %></td>
+            <td class='uk-text-center'><%= l(blood_request.created_at.to_date, format: :long) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

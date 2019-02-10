@@ -1,0 +1,29 @@
+<div class="uk-section uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m">
+          <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+
+            <h3 class="uk-card-title uk-text-center"><%= t('blood_donation_requests.request_blood_donation') %></h3>
+            <%= form_for(@blood_request, url: request_blood_donation_path) do |f| %>
+
+              <%= render 'shared/error_messages', obj: @blood_request %>
+
+              <div class="uk-margin">
+                <%= f.label :amount, t('blood_donation_requests.amount') %>
+                <div class="uk-inline uk-width-1-1">
+                  <%= f.number_field :amount, class: "uk-input uk-form-large", id: 'confirmation_code' %>
+                </div>
+              </div>
+
+              <div class="uk-margin">
+                <%= f.submit t('submit'), class: "uk-button uk-button-danger uk-button-large uk-width-1-1" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

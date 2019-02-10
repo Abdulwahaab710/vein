@@ -10,6 +10,7 @@
   <div class='<%= rtl? == true ? 'uk-navbar-left' : 'uk-navbar-right' %>'>
     <ul class="uk-navbar-nav uk-visible@s">
       <% if logged_in? %>
+        <li><%= link_to t('blood_donation_requests.title').pluralize, blood_donation_requests_path %></li>
         <li><%= link_to t('settings'), edit_user_path %></li>
         <li><%= link_to t('logout'), logout_path, method: :delete %></li>
       <% else %>

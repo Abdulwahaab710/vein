@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_024139) do
+ActiveRecord::Schema.define(version: 2019_02_02_211244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2019_01_14_024139) do
     t.datetime "updated_at", null: false
     t.index ["donator_id"], name: "index_blood_compatibilities_on_donator_id"
     t.index ["receiver_id"], name: "index_blood_compatibilities_on_receiver_id"
+  end
+
+  create_table "blood_donation_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "amount"
+    t.index ["user_id"], name: "index_blood_donation_requests_on_user_id"
   end
 
   create_table "blood_types", force: :cascade do |t|
@@ -99,6 +108,7 @@ ActiveRecord::Schema.define(version: 2019_01_14_024139) do
 
   add_foreign_key "blood_compatibilities", "blood_types", column: "donator_id"
   add_foreign_key "blood_compatibilities", "blood_types", column: "receiver_id"
+  add_foreign_key "blood_donation_requests", "users"
   add_foreign_key "cities", "countries"
   add_foreign_key "districts", "cities"
   add_foreign_key "sessions", "users"
