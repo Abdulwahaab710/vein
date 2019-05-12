@@ -29,7 +29,9 @@
         <%= render 'layouts/locale_dropdown.html.erb' %>
       </li>
       <% if logged_in? %>
+        <li><%= link_to t('blood_donation_requests.title').pluralize, blood_donation_requests_path %></li>
         <li><%= link_to t('settings'), edit_user_path %></li>
+        <br>
         <li><%= link_to t('logout'), logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to t('login'), login_path %></li>
@@ -37,4 +39,3 @@
     </ul>
   </div>
 </div>
-

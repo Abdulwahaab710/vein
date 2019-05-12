@@ -47,3 +47,4 @@ ar:
     status: 'Status'
     created_at: 'Created at'
     updated_at: 'Updated at'
+    title: 'Bllod donation Request'
