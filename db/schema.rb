@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_02_02_211244) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "amount"
+    t.integer "amount", default: 0
     t.index ["user_id"], name: "index_blood_donation_requests_on_user_id"
   end
 
