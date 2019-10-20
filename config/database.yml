@@ -16,8 +16,8 @@
 #
 default: &default
   adapter: postgresql
-  host: db
-  username: <%= ENV['VEIN_DATABASE_USERNAME'] %>
+  host: <%= ENV['VEIN_DATABASE_HOST'] || ENV['DATABASE_URL'] %>
+  username: <%= ENV['VEIN_DATABASE_USERNAME'] || 'vein' %>
   password: <%= ENV['VEIN_DATABASE_PASSWORD'] %>
   pool: 5
   timeout: 5000
@@ -85,5 +85,3 @@ test:
 production:
   <<: *default
   database: vein_production
-  username: vein
-  password: <%= ENV['VEIN_DATABASE_PASSWORD'] %>
