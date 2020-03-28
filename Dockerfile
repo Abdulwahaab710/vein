@@ -1,4 +1,4 @@
-FROM ruby@sha256:32f2edd01c5b35f900a1e4a45016d18697be4611d05ccea2ee4e799d142bd894
+FROM ruby:2.6.5
 
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -11,6 +11,7 @@ RUN apt-get update -yqq \
 
 WORKDIR /usr/src/app
 COPY Gemfile* ./
+RUN gem install bundler:2.0.2
 RUN bundle install
 COPY . .
 
