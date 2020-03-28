@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     I18n.locale = session_locale_or_accept_language_header_locale
-    logger.debug "* Locale set to '#{I18n.locale}'"
+    logger.debug "#{self.class}.#{action_name} Locale set to '#{I18n.locale}'"
   end
 
   def session_locale_or_accept_language_header_locale
