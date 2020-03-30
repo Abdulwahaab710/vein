@@ -8,8 +8,7 @@ AllCops:
     - bin/**
     - vendor/**.**
     - spec/factories.rb
-Rails:
-  Enabled: true
+require: rubocop-rails
 Documentation:
   Enabled: false
 Metrics/LineLength:
@@ -18,7 +17,7 @@ Metrics/BlockLength:
   ExcludedMethods: ['describe', 'context']
 Style/EmptyMethod:
   Enabled: false
-Rails/InverseOf:
-  Enabled: false # disable temporary until I figure out how to fix inverse_of
 Metrics/AbcSize:
+  Enabled: false
+Rails/InverseOf:
   Enabled: false
