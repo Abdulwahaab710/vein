@@ -18,7 +18,7 @@ gem 'redis', '~> 4.0'
 gem 'sass-rails'
 gem 'sidekiq'
 gem 'turbolinks'
-gem 'twilio-ruby', '~> 5.22.1'
+gem 'twilio-ruby', '~> 5.38.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'uikit-rails'
 
